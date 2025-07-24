@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
-rm /etc/nginx/sites-enabled/default
+# Configures NGINX to listen on port 80 and restart the service
+
+rm -f /etc/nginx/sites-enabled/default
+
+# Go to sites-enabled directory
 cd /etc/nginx/sites-enabled/
+
+# Recreate symbolic link to sites-available/default
 ln -s ../sites-available/default .
+
+# Restart nginx service
 service nginx restart
-curl 0:80
+
+# Test if nginx is responding on port 80
+curl -s 0:80
